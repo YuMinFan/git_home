@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 100%;
+            position: relative;
+        }
+        ul li{
+            width: 16.6666666666666%;
+            min-height: 200px;
+            background: #ccc;
+            float: left;
+            margin-top: 20px;
+        }
+        ul li:nth-child(2n){
+            background: #999;
+        }
+    </style>
+    <script src="my.js"></script>
+    <script>
+        window.onload=function () {
+
+
+            var oUL = document.querySelector("ul");
+            var aLi = oUL.querySelectorAll("li");
+
+            //获取位置
+            var aPos = [];
+            for (var i = 0; i < aLi.length; i++) {
+                aPos[i] = {left: aLi[i].offsetLeft, top: aLi[i].offsetTop}
+            }
+
+            //布局转换
+            function init(){
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.position="absolute";
+                    /*aLi[i].style.left=aPos[i].left + "px";
+                     aLi[i].style.top=aPos[i].top + "px";*/
+
+                    animate(aLi[i],{
+                        left:aPos[i].left,
+                        top:aPos[i].top
+                    })
+                };
+            }
+            init();
+
+            window.onresize=function(){
+                var X = document.body.clientWidth;
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.position="static";
+
+                    if(X < 640){
+                        aLi[i].style.width="50%";
+                    }
+                    else if (X <= 900){
+                        aLi[i].style.width="25%";
+                    }
+                    else if(X > 900){
+                        aLi[i].style.width="16.666666%";
+                    }
+
+                }
+
+                for (var i = 0; i < aLi.length; i++) {
+                    aPos[i] = {left: aLi[i].offsetLeft, top: aLi[i].offsetTop}
+                }
+                init();
+
+
+            };
+
+            /*function jeliu(fn,time){
+                var timer=null;
+                clearTimeout(timer);
+                return function(){
+                    timer=setTimeout(fn,time)
+                }
+            }*/
+
+
+
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

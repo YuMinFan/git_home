@@ -1,0 +1,64 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{
+            width:322px;
+            height:auto;
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+        }
+        .box img{
+            display: block;
+        }
+        #btn{
+            display: block;
+            width:30px;
+            height:30px;
+            background-color:red;
+            position: absolute;
+            top: -2px;
+            right: 3px;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="box">
+    <span id="btn"></span>
+    <div class="hd" id="t">
+        <img src="images/t.jpg" alt=""/>
+    </div>
+    <div class="bd" id="b">
+        <img src="images/b.jpg" alt=""/>
+    </div>
+
+</div>
+<script src="my.js"></script>
+<script>
+    var btn=$("btn");
+    var b=$("b");
+    var t=$("t");
+
+    btn.onclick=function(){
+        animate(b,{height:0},function(){
+            animate($("box"),{right:-322})
+        })
+    }
+
+</script>
+
+
+
+</body>
+</html>
+

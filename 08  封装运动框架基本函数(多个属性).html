@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: relative;
+            left:0px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="到200" id="btn200">
+<input type="button" value="到500" id="btn500">
+<div class="box" id="box">
+
+</div>
+
+<script>
+    var btn200=document.getElementById("btn200");
+    var btn500=document.getElementById("btn500");
+    var box=document.getElementById("box");
+    var timer=null;
+
+    btn200.onclick=function(){
+        animate(box,{left:200,width:600,opacity:20,zIndex:2},function(){
+            alert(11)
+        })
+    };
+    btn500.onclick=function(){
+        animate(box,{left:800})
+    };
+
+
+    //运动框架
+    function animate(obj,json,fn){
+        clearInterval(obj.timer);
+        obj.timer=setInterval(function () {
+            var off=true;
+            var current=0;
+            for (var attr in json){
+                //var current = parseInt(getStyle(obj,attr));
+                if (attr == "opacity"){
+                    current=json[attr]
+                }
+                else{
+                    var current = parseInt(getStyle(obj,attr));
+                }
+                speed = (json[attr] - current) / 10;
+                speed= speed >0 ? Math.ceil(speed) : Math.floor(speed);
+                if (attr == "opacity"){
+                    obj.style.opacity=json[attr] / 100;
+                    obj.style.filter= "alpha(opacity="+json[attr]+")";
+                }
+                else if(attr == "zIndex"){
+                    obj.style.zIndex=json[attr]
+                }
+                else
+                {
+                    obj.style[attr]=current + speed + "px"
+                }
+
+
+                /*if (!speed){
+                    clearInterval(obj.timer);
+                    alert("到位置了")
+                }*/
+                if (current != json[attr]) {
+                    off = false;
+                }
+            }
+
+            if (off){
+                clearInterval(obj.timer);
+                //alert("到位置了")
+                if (fn){
+                    fn();
+                }
+            }
+
+            console.log(1)
+
+
+        },30)
+
+    }
+
+
+
+    function getStyle(obj,attr){  //谁的      那个属性
+        if (obj.currentStyle){
+            //ie
+            return obj.currentStyle[attr]
+        }
+        else{
+            return getComputedStyle(obj,null)[attr]
+        }
+    }
+</script>
+</body>
+</html>
