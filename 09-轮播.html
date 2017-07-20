@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 300px;
+            margin:50px auto;
+            height: 200px;
+            border: 1px  solid #ccc;
+            position: relative;
+        }
+        ul li{
+            width:300px;
+            height:200px;
+            background: #ccc;
+            position: absolute;
+            left:300px;
+        }
+        ul li:nth-child(2n){
+            background: pink;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <ul class="inner">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+
+    </div>
+    <a href="javascript:;" onclick="next()">下一张</a>
+</body>
+</html>
+
+<script src="my.js"></script>
+<script>
+
+/* var box = document.querySelector(".box");
+ var oUl = document.querySelector("ul");
+ var aLi = document.querySelectorAll(".box ul li");
+ var key=0;
+ aLi[0].style.left = "0px";
+
+ function next() {
+
+
+ animate(aLi[key],{left:-box.clientWidth});
+ key++;
+ animate(aLi[key],{left:0});
+ key >= 3 ? key=0 : key;
+ aLi[key].style.left=box.clientWidth+"px";
+ }
+ */
+        var box = document.querySelector(".box");
+        var oUl = document.querySelector("ul");
+        var aLi = document.querySelectorAll(".box ul li");
+        var key=0;
+        aLi[0].style.left = "0px";
+
+        function next() {
+
+
+            animate(aLi[key],{left:-box.clientWidth});
+            key++;
+            key >= 3 ? key=0 : key;
+            animate(aLi[key],{left:0});
+            aLi[key].style.left=box.clientWidth+"px";
+        }
+
+</script>
